@@ -23,7 +23,7 @@
 // //if you use  flag it will append it with the previous file else thhe file will be completely overwritten
 // writeFileSync("./content/added.txt",`append file: ${f1},${f2}`,{flag:'a'}) ;
 
-// //creating server
+//creating server
 // const http = require("http");
 
 // const server = http.createServer((req, res) => {
@@ -41,23 +41,37 @@
 //   }
 // });
 
-// server.listen(5000);
+// server.listen(5000,()=>{
+//   console.log("server starting on port 5000") ;
+// });
 
 
 //using promise is async fs
-const {readFile} = require("fs") ;
-const gettext = (path)=>{
-       return new Promise((resolve,reject)=>{
-       readFile(path,'utf8',(err,result)=>{
-          if(err){
-             reject(err)
-          }
-          else{
-            resolve(result) ;
-          }
-       })
-       })
-}
-gettext('./content/first.txt').then((result)=>{
-  console.log(result) ;
-}).catch((err)=>{console.log(err)}) ;
+// const {readFile} = require("fs") ;
+// const gettext = (path)=>{
+//        return new Promise((resolve,reject)=>{
+//        readFile(path,'utf8',(err,result)=>{
+//           if(err){
+//              reject(err)
+//           }
+//           else{
+//             resolve(result) ;
+//           }
+//        })
+//        })
+// }
+// gettext('./content/first.txt').then((result)=>{
+//   console.log(result) ;
+// }).catch((err)=>{console.log(err)}) ;
+
+
+// //  event driven programming in node js
+// const EventEmitter = require("events") ;
+// const customEmitter = new EventEmitter() ;
+// customEmitter.on('response',()=>{
+//   console.log('data recieved') ;
+// })
+// customEmitter.emit('response') ;
+
+//streams 
+

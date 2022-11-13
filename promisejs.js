@@ -1,18 +1,23 @@
-const a=false ;
-const b=false ;
- let p =new Promise((resolve,reject)=>{
-     if(a||b){
-        reject({
-            name:'user left' ,
-            message:':('
-        });
-     }
-     else {
-        resolve("thumbs up ") ;
-     }
- });
- p.then((message)=>{
-    console.log(message) ;
- }).catch((message)=>{
-    console.log(message) ;
- });
+const makerequest= (location)=>{
+  return new Promise((resolve,reject)=>{
+     console.log(`processing request for ${location} `) ;
+     if(location=="google")resolve("google says hi") ;
+     else reject("we can only talk to google") ;
+  });
+}
+const processrequest=(response)=>{
+    return new Promise((resolve,reject)=>{
+      console.log("processing response")  ;
+      if(response)
+   resolve(`extra information + ${response}`) ; 
+    })
+}
+
+makerequest("google").then((expression)=>{
+   console.log("response recieved") ;
+   processrequest(expression).then((res)=>{
+      console.log(res) ;
+   })
+}).catch((err)=>{
+   console.log(err) ;
+})
