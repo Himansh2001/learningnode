@@ -23,22 +23,41 @@
 // //if you use  flag it will append it with the previous file else thhe file will be completely overwritten
 // writeFileSync("./content/added.txt",`append file: ${f1},${f2}`,{flag:'a'}) ;
 
-//creating server
-const http = require("http");
+// //creating server
+// const http = require("http");
 
-const server = http.createServer((req, res) => {
-  if (req.url === "/") {
-    res.end("this is home page");
-  } 
-  else if (req.url === "/about") {
-    res.end("this is about");
-  } 
-  else {
-    res.end(`<h1>OOps</h1>
-  <p1>page not found</p1>
-  <a href="/">back to home</a>
-  `);
-  }
-});
+// const server = http.createServer((req, res) => {
+//   if (req.url === "/") {
+//     res.end("this is home page");
+//   } 
+//   else if (req.url === "/about") {
+//     res.end("this is about");
+//   } 
+//   else {
+//     res.end(`<h1>OOps</h1>
+//   <p1>page not found</p1>
+//   <a href="/">back to home</a>
+//   `);
+//   }
+// });
 
-server.listen(5000);
+// server.listen(5000);
+
+
+//using promise is async fs
+const {readFile} = require("fs") ;
+const gettext = (path)=>{
+       return new Promise((resolve,reject)=>{
+       readFile(path,'utf8',(err,result)=>{
+          if(err){
+             reject(err)
+          }
+          else{
+            resolve(result) ;
+          }
+       })
+       })
+}
+gettext('./content/first.txt').then((result)=>{
+  console.log(result) ;
+}).catch((err)=>{console.log(err)}) ;
